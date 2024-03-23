@@ -1,8 +1,12 @@
+import { SignInButton, SignedOut } from "@clerk/clerk-react";
+
 const Login = () => {
     return (
-        <div>
-            login page
-        </div>
+        <header>
+            <SignedOut> 
+            <SignInButton mode="modal" redirectUrl="/home" />
+            </SignedOut>
+        </header>
     )
 }
 

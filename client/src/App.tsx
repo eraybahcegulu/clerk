@@ -1,16 +1,47 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { routes } from './routes';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
+import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
-const App = () => {
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={
+        <>
+          <Login />
+        </>
+      }
+      />
+
+      <Route
+        path="/home"
+        element={
+          <>
+            <SignedIn>
+              <Home />
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+    </>
+  )
+);
+
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {routes.map((route, index) => (
-          <Route key={index} path={route.path} element={route.element} />
-        ))}
-      </Routes>
-    </BrowserRouter>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
-};
+}
 
 export default App;
