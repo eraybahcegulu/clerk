@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-const dbUrl: string = process.env.MONGODB_URI || 'mongodb://localhost:27017/mern-stack';
+const dbUrl: string = process.env.MONGODB_URI || '';
 
 const connectDB = async () => {
     mongoose.connect(dbUrl);
