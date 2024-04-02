@@ -1,10 +1,10 @@
 import { SignInButton, SignedOut } from "@clerk/clerk-react";
 
-const Login = () => {
+export const Login = () => {
     return (
         <header>
-            <SignedOut> 
-            <SignInButton mode="modal" redirectUrl="/home" />
+            <SignedOut>
+                <SignInButton mode="modal" redirectUrl="/home" />
             </SignedOut>
         </header>
     )
