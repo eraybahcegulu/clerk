@@ -1,12 +1,11 @@
-import { SignInButton, SignedOut } from "@clerk/clerk-react";
+import { SignIn, } from "@clerk/clerk-react";
 
 export const Login = () => {
+
     return (
-        <header>
-            <SignedOut>
-                <SignInButton mode="modal" redirectUrl="/home" />
-            </SignedOut>
-        </header>
+        <div className="min-h-screen py-20 flex justify-center items-center">
+            <SignIn redirectUrl="/home" />
+        </div>
     )
 }
 

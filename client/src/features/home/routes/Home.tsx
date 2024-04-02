@@ -1,9 +1,8 @@
-import { UserButton } from '@clerk/clerk-react'
-import React from 'react'
+import { UserButton,  } from '@clerk/clerk-react'
 
 const Home = () => {
     return (
-        <div>  <UserButton /></div>
+        <div>  <UserButton afterSignOutUrl='/login' /></div>
     )
 }
 

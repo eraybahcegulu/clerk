@@ -3,15 +3,15 @@ import { authRoutes } from './public';
 import { protectedRoutes } from './protected';
 import { useUser } from '@clerk/clerk-react';
 import { commonRoutes } from './common';
-import Loading from '../features/misc/routes/Loading';
+import UserLoading from '../components/UserLoading';
 
 export const AppRoutes = () => {
-    const user = useUser();
+    const { isSignedIn , isLoaded} = useUser();
 
-    const routes = user?.isSignedIn ? protectedRoutes : authRoutes;
+    const routes = isSignedIn ? protectedRoutes : authRoutes;
     const element = useRoutes([...routes, ...commonRoutes]);
 
-    if (!user.isLoaded) return <Loading/>
+    if (!isLoaded) return <UserLoading/>
 
     return <> {element} </>;
 };
