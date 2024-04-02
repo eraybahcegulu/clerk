@@ -12,9 +12,9 @@ type AppProviderProps = {
 export const AppProvider = ({ children }: AppProviderProps) => {
 
     const queryClient = new QueryClient()
-    const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+    const CLERK_PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
-    if (!PUBLISHABLE_KEY) {
+    if (!CLERK_PUBLISHABLE_KEY) {
         throw new Error("Missing Publishable Key")
     }
 
@@ -22,7 +22,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         <NextUIProvider>
             <Toaster />
             <QueryClientProvider client={queryClient}>
-                <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+                <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
                     <Router>{children}</Router>
                 </ClerkProvider>
             </QueryClientProvider>
