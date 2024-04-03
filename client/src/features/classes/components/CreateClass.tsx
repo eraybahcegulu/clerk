@@ -28,9 +28,10 @@ export const CreateClass = () => {
                         form="create-class"
                         type="submit"
                         size="sm"
+                        disabled={createClassMutation.isLoading}
                         isLoading={createClassMutation.isLoading}
                     >
-                        Submit
+                        Create
                     </Button>
                 }
             >

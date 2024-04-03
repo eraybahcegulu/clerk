@@ -3,6 +3,7 @@ import { API_URL } from '../config';
 import storage from '../utils/storage';
 import toast from 'react-hot-toast';
 
+
 function authRequestInterceptor(config: AxiosRequestConfig) {
     const token = storage.getToken();
     if (token && config.headers) {
@@ -12,7 +13,6 @@ function authRequestInterceptor(config: AxiosRequestConfig) {
 
     return config;
 }
-
 
 export const axios = Axios.create({
     baseURL: API_URL,
@@ -24,12 +24,17 @@ axios.interceptors.response.use(
         return response.data;
     },
     (error) => {
+        console.log(error)
         const message = error.response?.data?.message || error.message;
-        if (error.response.status === 401) {
-            localStorage.clear();
-            return toast.error(message)
+        if (error.response.status === 400) {
+            if (error.response.data.authorization === false) {
+                localStorage.clear();
+                throw toast.error(message)
+            }
+            else {
+                throw toast.error(message)
+            }
         }
-
 
         return Promise.reject(error);
     }

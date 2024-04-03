@@ -12,4 +12,10 @@ const routes = [
     classRouter
 ];
 
+const delayMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    setTimeout(next, 2000); // 2 saniyelik gecikme
+};
+
+app.use(delayMiddleware);
+
 routes.forEach(route => app.use(route));

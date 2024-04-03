@@ -1,4 +1,4 @@
-import Home from "../features/home/routes/Home";
+import Home from "../features/home/HomePage";
 
 export const protectedRoutes = [
     {

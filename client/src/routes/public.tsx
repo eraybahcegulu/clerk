@@ -1,5 +1,5 @@
-import Login from "../features/auth/routes/Login";
-import Register from "../features/auth/routes/Register";
+import Login from "../features/auth/LoginPage";
+import Register from "../features/auth/RegisterPage";
 
 export const authRoutes = [
     {

@@ -1,37 +1,18 @@
 import { UserButton } from "@clerk/clerk-react"
 import { CreateClass } from "../../classes/components/CreateClass"
 import ClassesList from "../../classes/components/ClassesList"
-const SideBar = () => {
+
+const Sidebar = () => {
     return (
-        <div className="min-h-screen max-h-screen max-w-[200px] flex flex-col justify-between">
-            <div className="ml-0 h-full  border-r shadow-2xl min-w-[200px] flex flex-col justify-between gap-2 items-center p-4 text-black">
-
-
-                <div className="w-full flex flex-col gap-2">
-
-                    <div className="flex flex-col items-center overflow-ellipsis break-words gap-2">
-                        <CreateClass />
-                        <div className="max-w-full text-wrap flex flex-col gap-2">
-                            <span className="border-slate-500 border-b">My Classes</span>
-                            <ClassesList/>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="w-full flex  flex-col items-center justify-start ">
-
-                </div>
-            </div>
-
-
-
-            <div className="flex p-2 justify-center text-center items-center shadow-md">
+        <div className='h-full w-full  max-w-[300px] break-words border borde-black flex flex-col shadow-2xl gap-2 items-center pt-4'>
+            <CreateClass />
+            <span className="border-b border-slate-400">My Classes</span>
+            <ClassesList />
+            <div className="mt-auto p-4 flex justify-center items-center">
                 <UserButton afterSignOutUrl='/login' />
             </div>
-
         </div>
-
     )
 }
 
-export default SideBar
+export default Sidebar

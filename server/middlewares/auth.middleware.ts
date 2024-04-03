@@ -8,7 +8,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
         //console.log(req.body)
 
         if (!req.headers.authorization) {
-            return res.status(401).json({ message: 'User auth token not available' });
+            return res.status(400).json({ message: 'User auth token not available', authorization: false });
         }
 
         const token = req.headers.authorization.split(' ')[1];
@@ -18,7 +18,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
             jwt.verify(token, process.env.CLERK_PEM_PUBLIC_KEY as string, (error: any, decodedToken: any) => {
 
                 if (error) {
-                    return res.status(401).json({ message: 'User auth token not valid' });
+                    return res.status(400).json({ message: 'User auth token not valid', authorization: false });
                 } else {
                     req.user = decodedToken;
                     //console.log(req.user)
@@ -26,7 +26,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
                 }
             });
         } else {
-            return res.status(401).json({ message: 'User auth token not available' });
+            return res.status(400).json({ message: 'User auth token not available', authorization: false });
         }
     } catch (error: any) {
         console.error('Error', error);

@@ -1,6 +1,11 @@
 import { status } from "./enums/status.modal";
 
-export const BaseModel ={
+export const BaseModel = {
+
+    createdBy: {
+        type: String,
+        required: true,
+    },
 
     createdAt: {
         type: Date,

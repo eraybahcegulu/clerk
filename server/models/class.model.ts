@@ -1,12 +1,8 @@
-import mongoose, { Document, Model, Mongoose, Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 import { BaseModel } from "./base.model"
+import { IClassModel } from "../types";
 
-export interface IClass extends Document {
-    className: string;
-
-}
-
-const classSchema = new Schema<IClass>(
+const classSchema = new Schema<IClassModel>(
     {
         className: {
             type: String,
@@ -17,5 +13,5 @@ const classSchema = new Schema<IClass>(
     },
 );
 
-const classModel: Model<IClass> = mongoose.model("Class", classSchema);
+const classModel: Model<IClassModel> = mongoose.model("Class", classSchema);
 export default classModel;
