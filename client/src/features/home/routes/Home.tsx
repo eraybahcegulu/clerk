@@ -3,10 +3,10 @@ import { useClasses } from '../../classes/api/getClasses';
 
 const Home = () => {
 
-    const usersQuery = useClasses();
+    const query = useClasses();
 
-    if(usersQuery.isLoading) return <div>loading...</div>
-    console.log(usersQuery)
+    if(query.isLoading) return <div>loading...</div>
+    console.log(query)
     return (
         <div className='min-h-screen flex'>
             <SideBar />

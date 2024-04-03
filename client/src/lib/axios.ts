@@ -1,7 +1,7 @@
 import Axios, { AxiosRequestConfig } from 'axios';
 import { API_URL } from '../config';
 import storage from '../utils/storage';
-import { useNotificationStore } from '../stores/notifications';
+import toast from 'react-hot-toast';
 
 function authRequestInterceptor(config: AxiosRequestConfig) {
     const token = storage.getToken();
@@ -25,11 +25,12 @@ axios.interceptors.response.use(
     },
     (error) => {
         const message = error.response?.data?.message || error.message;
-        useNotificationStore.getState().addNotification({
-            type: 'error',
-            title: 'Error',
-            message,
-        });
+
+        if (error.response.status === 401) {
+            localStorage.clear();
+            return toast.error(message)
+        }
+
 
         return Promise.reject(error);
     }

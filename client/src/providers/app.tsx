@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Notifications } from '../components/Notifications';
 
 type AppProviderProps = {
     children: React.ReactNode;
@@ -23,6 +24,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
             <Toaster />
             <QueryClientProvider client={queryClient}>
                 <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+                <Notifications />
                     <Router>{children}</Router>
                 </ClerkProvider>
             </QueryClientProvider>

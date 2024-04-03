@@ -1,3 +1,3 @@
-export type Class = {
+export type IClass = {
     className: string;
 }
