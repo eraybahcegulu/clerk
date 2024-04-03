@@ -1,6 +1,8 @@
+import Cookies from 'js-cookie';
+
 const storage = {
     getToken: () => {
-        return localStorage.getItem('clerk-db-jwt');
+        return Cookies.get('__session')
     },
 
     clearToken: () => {

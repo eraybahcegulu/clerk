@@ -6,7 +6,7 @@ const subRouter = express.Router();
 
 router.use("/api/class", subRouter);
 
-subRouter.get("/",  getAll);
+subRouter.get("/", auth,  getAll);
 subRouter.post("/", add);
 
 export default router;
