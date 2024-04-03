@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { MutationConfig, queryClient } from '../../../lib/react-query';
 
-import { IClass } from '../types';
+import { ICreateClass, IGetClasses } from '../types';
 import { useNotificationStore } from '../../../stores/notifications';
 
 export type CreateClassDTO = {
@@ -12,7 +12,7 @@ export type CreateClassDTO = {
     };
 };
 
-export const createClass = ({ data }: CreateClassDTO): Promise<IClass> => {
+export const createClass = ({ data }: CreateClassDTO): Promise<ICreateClass> => {
     return axios.post(`/class`, data);
 };
 
@@ -26,7 +26,7 @@ export const useCreateClass = ({ config }: UseCreateClassOptions = {}) => {
         onMutate: async (newClass) => {
             await queryClient.cancelQueries('classes');
 
-            const previousClasses = queryClient.getQueryData<IClass[]>('classes');
+            const previousClasses = queryClient.getQueryData<IGetClasses[]>('classes');
 
             queryClient.setQueryData('classes', [...(previousClasses || []), newClass.data]);
 
@@ -37,12 +37,12 @@ export const useCreateClass = ({ config }: UseCreateClassOptions = {}) => {
                 queryClient.setQueryData('classes', context.previousClasses);
             }
         },
-        onSuccess: (res) => {
+        onSuccess: async (res) => {
             console.log(res)
-            queryClient.invalidateQueries('classes');
+            await queryClient.invalidateQueries('classes');
             addNotification({
                 type: 'success',
-                title: 'Discussion Created',
+                title: 'Class Created',
             });
         },
         ...config,

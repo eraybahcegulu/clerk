@@ -25,7 +25,6 @@ axios.interceptors.response.use(
     },
     (error) => {
         const message = error.response?.data?.message || error.message;
-
         if (error.response.status === 401) {
             localStorage.clear();
             return toast.error(message)

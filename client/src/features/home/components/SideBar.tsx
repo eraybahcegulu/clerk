@@ -1,5 +1,6 @@
 import { UserButton } from "@clerk/clerk-react"
 import { CreateClass } from "../../classes/components/CreateClass"
+import ClassesList from "../../classes/components/ClassesList"
 const SideBar = () => {
     return (
         <div className="min-h-screen max-h-screen max-w-[200px] flex flex-col justify-between">
@@ -7,11 +8,12 @@ const SideBar = () => {
 
 
                 <div className="w-full flex flex-col gap-2">
-                   
-                    <div className="flex flex-col items-center overflow-ellipsis break-words">
-                        <CreateClass/>
-                        <div className="max-w-full text-wrap flex flex-col gap-2">
 
+                    <div className="flex flex-col items-center overflow-ellipsis break-words gap-2">
+                        <CreateClass />
+                        <div className="max-w-full text-wrap flex flex-col gap-2">
+                            <span className="border-slate-500 border-b">My Classes</span>
+                            <ClassesList/>
                         </div>
                     </div>
                 </div>
