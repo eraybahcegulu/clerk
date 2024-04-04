@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import Class from "../models/class.model";
-import { status } from "../models/enums/status.modal";
-import ErrorHandler from "../utils/errorHandler";
+import { status } from "../models/enums/status.model";
 
 export const getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -9,7 +8,17 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
         return res.status(200).json(classes);
     } catch (error: any) {
         console.error('Error', error);
-        return next(new ErrorHandler(error.message, 500));
+        return res.status(500).json(error.message);
+    }
+};
+
+export const get = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const exist = await Class.findOne({ status: status.ACTIVE, createdBy: req.user.sub, _id: req.params.classId })
+        return res.status(200).json(exist);
+    } catch (error: any) {
+        console.error('Error', error);
+        return res.status(500).json(error.message);
     }
 };
 
@@ -30,6 +39,6 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
         return res.status(200).json({ message: "created" });
     } catch (error: any) {
         console.error('Error', error);
-        return next(new ErrorHandler(error.message, 500));
+        return res.status(500).json(error.message);
     }
 };

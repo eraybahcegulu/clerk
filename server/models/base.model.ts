@@ -1,4 +1,4 @@
-import { status } from "./enums/status.modal";
+import { status } from "./enums/status.model";
 
 export const BaseModel = {
 

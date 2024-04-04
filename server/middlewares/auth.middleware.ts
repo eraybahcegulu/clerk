@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import ErrorHandler from "../utils/errorHandler";
 import jwt from "jsonwebtoken";
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
@@ -30,6 +29,6 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
         }
     } catch (error: any) {
         console.error('Error', error);
-        return next(new ErrorHandler(error.message, 500));
+        return res.status(500).json(error.message);
     }
 };

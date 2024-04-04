@@ -1,7 +1,7 @@
 import { useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Result } from 'antd'
-const NotFoundRoute = () => {
+const NotFoundPage = () => {
     const user = useUser();
     const navigate = useNavigate();
     return (
@@ -14,7 +14,7 @@ const NotFoundRoute = () => {
                         status="404"
                         title="404"
                         subTitle="Sorry, the page you visited does not exist."
-                        extra={<Button onClick={() => navigate('/home')} color='primary'>Back Home</Button>}
+                        extra={<Button onClick={() => navigate('/home')} color='primary'>Home</Button>}
                     />
 
                     :
@@ -29,4 +29,4 @@ const NotFoundRoute = () => {
     )
 }
 
-export default NotFoundRoute
+export default NotFoundPage

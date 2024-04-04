@@ -6,3 +6,8 @@ export type IGetClasses = {
     _id: string;
     className: string;
 }
+
+export type IGetClass = {
+    _id: string;
+    className: string;
+}

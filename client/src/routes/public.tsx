@@ -1,14 +1,14 @@
-import Login from "../features/auth/LoginPage";
-import Register from "../features/auth/RegisterPage";
+import LoginPage from "../features/auth/LoginPage";
+import RegisterPage from "../features/auth/RegisterPage";
 
 export const authRoutes = [
     {
         path: '/login',
-        element: <Login />,
+        element: <LoginPage />,
     },
 
     {
         path: '/register',
-        element: <Register />,
+        element: <RegisterPage />,
     },
 ];

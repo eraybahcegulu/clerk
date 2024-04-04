@@ -1,8 +1,8 @@
-import NotFound from "../features/misc/routes/NotFound";
+import NotFoundPage from "../features/misc/NotFoundPage";
 
 export const commonRoutes = [
     {
         path: '/*',
-        element: <NotFound />,
+        element: <NotFoundPage />,
     },
 ];

@@ -28,7 +28,7 @@ export const useCreateClass = ({ config }: UseCreateClassOptions = {}) => {
                 queryClient.setQueryData('classes', context.previousClasses);
             }
         },
-        onSuccess: async (res) => {
+        onSuccess: async () => {
             await queryClient.invalidateQueries('classes');
             addNotification({
                 type: 'success',

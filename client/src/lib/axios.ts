@@ -1,10 +1,10 @@
-import Axios, { AxiosRequestConfig } from 'axios';
+import Axios from 'axios';
 import { API_URL } from '../config';
 import storage from '../utils/storage';
 import toast from 'react-hot-toast';
 
 
-function authRequestInterceptor(config: AxiosRequestConfig) {
+function authRequestInterceptor(config: any) {
     const token = storage.getToken();
     if (token && config.headers) {
         config.headers.authorization = `Bearer ${token}`;
