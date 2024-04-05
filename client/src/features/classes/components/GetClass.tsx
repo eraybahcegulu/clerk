@@ -1,4 +1,3 @@
-import React from 'react'
 import { useClass } from '../api/getClass';
 import { useParams } from 'react-router-dom';
 import { Spinner } from '../../../components/Elements/Spinner';

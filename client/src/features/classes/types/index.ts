@@ -1,3 +1,8 @@
+export type IClass = {
+    _id: string;
+    className: string;
+}
+
 export type ICreateClass = {
     className: string;
 }

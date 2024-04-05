@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import Class from "../models/class.model";
 import { status } from "../models/enums/status.model";
 
-export const getAll = async (req: Request, res: Response, next: NextFunction) => {
+export const getAllClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const classes = await Class.find({ status: status.ACTIVE, createdBy: req.user.sub })
         return res.status(200).json(classes);
@@ -12,7 +12,7 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
     }
 };
 
-export const get = async (req: Request, res: Response, next: NextFunction) => {
+export const getClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const exist = await Class.findOne({ status: status.ACTIVE, createdBy: req.user.sub, _id: req.params.classId })
         return res.status(200).json(exist);
@@ -22,7 +22,7 @@ export const get = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-export const add = async (req: Request, res: Response, next: NextFunction) => {
+export const createClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
         const existClass = await Class.findOne({ status: status.ACTIVE, className: req.body.className })
@@ -37,6 +37,18 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
 
         await newClass.save();
         return res.status(200).json({ message: "created" });
+    } catch (error: any) {
+        console.error('Error', error);
+        return res.status(500).json(error.message);
+    }
+};
+
+export const deleteClass = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        await Class.deleteOne({ _id: req.params.classId })
+
+        return res.status(200).json({ message: "deleted" });
+
     } catch (error: any) {
         console.error('Error', error);
         return res.status(500).json(error.message);
