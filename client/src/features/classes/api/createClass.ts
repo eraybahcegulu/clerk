@@ -25,11 +25,11 @@ export const useCreateClass = ({ config }: UseCreateClassOptions = {}) => {
     return useMutation({
         onError: (_, __, context: any) => {
             if (context?.previousClasses) {
-                queryClient.setQueryData('classes', context.previousClasses);
+                queryClient.setQueryData('class', context.previousClasses);
             }
         },
         onSuccess: async () => {
-            await queryClient.invalidateQueries('classes');
+            await queryClient.invalidateQueries('class');
             addNotification({
                 type: 'success',
                 title: 'Class Created',

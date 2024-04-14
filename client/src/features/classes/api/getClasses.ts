@@ -18,7 +18,7 @@ type UseClassesOptions = {
 export const useClasses = ({ config }: UseClassesOptions = {}) => {
     return useQuery<ExtractFnReturnType<QueryFnType>>({
         ...config,
-        queryKey: ['classes'],
+        queryKey: ['class'],
         queryFn: () => getClasses(),
     });
 };
