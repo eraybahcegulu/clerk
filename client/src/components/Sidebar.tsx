@@ -16,7 +16,7 @@ const Sidebar = () => {
     return (
         <div className={`transition-all overflow-auto bg-slate-300 border shadow-2xl flex flex-col  p-2 ${isOpen ? 'w-72' : 'w-24'}`}>
             <div className='w-full flex justify-end '>
-                <span className='text-2xl text-gray-600 hover:scale-125 transition-all cursor-pointer' onClick={handleToggle}> {isOpen ? <FaAngleLeft /> : <FaAngleRight />}</span>
+                <FaAngleLeft onClick={handleToggle} className={`text-2xl text-gray-600 hover:scale-125 duration-500 cursor-pointer ${!isOpen && '-rotate-180'}`} />
             </div>
 
             <div className='flex flex-col gap-4 p-4'>
