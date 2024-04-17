@@ -45,7 +45,13 @@ export const createClass = async (req: Request, res: Response, next: NextFunctio
 
 export const deleteClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        await Class.deleteOne({ _id: req.params.classId })
+
+        const existClass = await Class.findOne({ _id: req.params.classId })
+        if (!existClass) {
+            return res.status(400).json({ message: `Not found` });
+        }
+
+        await existClass.deleteOne();
 
         return res.status(200).json({ message: "deleted" });
 

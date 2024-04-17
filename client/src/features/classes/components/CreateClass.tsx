@@ -5,7 +5,8 @@ import { Button } from '../../../components/Elements/Button';
 import { Form, FormDrawer, InputField } from '../../../components/Form';
 
 
-import { CreateClassDTO, useCreateClass } from '../api/createClass';
+import {  useCreateClass } from '../api/createClass';
+import { ICreateClass } from '../types';
 
 const schema = z.object({
     className: z.string().min(1, 'Required'),
@@ -35,7 +36,7 @@ export const CreateClass = () => {
                     </Button>
                 }
             >
-                <Form<CreateClassDTO['data'], typeof schema>
+                <Form<ICreateClass['data'], typeof schema>
                     id="create-class"
                     onSubmit={async (values) => {
                         await createClassMutation.mutateAsync({ data: values });

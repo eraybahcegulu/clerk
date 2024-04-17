@@ -11,12 +11,12 @@ export const getClass = ({ classId }: { classId: string }): Promise<IGetClass> =
 
 type QueryFnType = typeof getClass;
 
-type UseClassOptions = {
+type IGetClassOptions = {
     classId: string;
     config?: QueryConfig<QueryFnType>;
 };
 
-export const useClass = ({ classId, config }: UseClassOptions) => {
+export const useClass = ({ classId, config }: IGetClassOptions) => {
     return useQuery<ExtractFnReturnType<QueryFnType>>({
         ...config,
         queryKey: ['class', classId],

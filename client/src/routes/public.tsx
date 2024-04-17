@@ -1,7 +1,8 @@
-import LoginPage from "../features/auth/LoginPage";
-import RegisterPage from "../features/auth/RegisterPage";
 
-export const authRoutes = [
+import LoginPage from "../pages/publicPages/LoginPage";
+import RegisterPage from "../pages/publicPages/RegisterPage";
+
+export const publicRoutes = [
     {
         path: '/login',
         element: <LoginPage />,

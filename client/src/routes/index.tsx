@@ -1,17 +1,29 @@
 import { useRoutes } from 'react-router-dom';
-import { authRoutes } from './public';
+import { publicRoutes } from './public';
 import { protectedRoutes } from './protected';
 import { useUser } from '@clerk/clerk-react';
 import { commonRoutes } from './common';
 import UserLoading from '../components/UserLoading';
+import PrivateLayout from '../components/PrivateLayout';
+import PublicLayout from '../components/PublicLayout';
 
 export const AppRoutes = () => {
-    const { isSignedIn , isLoaded} = useUser();
+    const { isSignedIn, isLoaded } = useUser();
 
-    const routes = isSignedIn ? protectedRoutes : authRoutes;
+    const routes = isSignedIn ? protectedRoutes : publicRoutes;
     const element = useRoutes([...routes, ...commonRoutes]);
 
-    if (!isLoaded) return <UserLoading/>
+    if (!isLoaded) return <PublicLayout content={<UserLoading />} />
 
-    return <> {element} </>;
+    return (
+        <>
+            {
+                isSignedIn
+                    ?
+                    <PrivateLayout content={element} />
+                    :
+                    <PublicLayout content={element} />
+            }
+        </>
+    );
 };

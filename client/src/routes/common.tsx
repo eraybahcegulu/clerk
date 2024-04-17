@@ -1,4 +1,4 @@
-import NotFoundPage from "../features/misc/NotFoundPage";
+import NotFoundPage from "../pages/commonPages/NotFoundPage";
 
 export const commonRoutes = [
     {

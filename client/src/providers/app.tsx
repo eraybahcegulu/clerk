@@ -4,7 +4,6 @@ import { QueryClientProvider } from 'react-query'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Notifications } from '../components/Notifications';
 import { queryClient } from '../lib/react-query';
 
 type AppProviderProps = {
@@ -12,7 +11,6 @@ type AppProviderProps = {
 };
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-
 
     const CLERK_PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -22,10 +20,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
     return (
         <NextUIProvider>
-            <Toaster />
             <QueryClientProvider client={queryClient}>
                 <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
-                <Notifications />
+                    <Toaster />
                     <Router>{children}</Router>
                 </ClerkProvider>
             </QueryClientProvider>

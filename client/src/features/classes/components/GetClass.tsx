@@ -1,11 +1,11 @@
 import { useClass } from '../api/getClass';
 import { useParams } from 'react-router-dom';
-import { Spinner } from '../../../components/Elements/Spinner';
+import ContentLoading from '../../../components/ContentLoading';
 
 const GetClass = () => {
     const { classId } = useParams();
     const { data, isLoading } = useClass({ classId: classId || '' });
-    if (!data || isLoading) return <Spinner />
+    if (!data || isLoading) return <ContentLoading/>
 
     return (
         <span> {data.className}</span>

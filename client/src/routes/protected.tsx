@@ -1,5 +1,8 @@
-import ClassPage from "../features/classes/ClassPage";
-import HomePage from "../features/home/HomePage";
+import ClassPage from "../pages/protectedPages/ClassPage";
+import ClassesPage from "../pages/protectedPages/ClassesPage";
+import HomePage from "../pages/protectedPages/HomePage";
+import StudentPage from "../pages/protectedPages/StudentPage";
+import StudentsPage from "../pages/protectedPages/StudentsPage";
 
 export const protectedRoutes = [
     {
@@ -7,7 +10,19 @@ export const protectedRoutes = [
         element: <HomePage />,
     },
     {
-        path: '/home/class/:classId',
+        path: '/classes',
+        element: <ClassesPage />,
+    },
+    {
+        path: '/class/:classId',
         element: <ClassPage />,
+    },
+    {
+        path: '/students',
+        element: <StudentsPage />,
+    },
+    {
+        path: '/student/:studentId',
+        element: <StudentPage />,
     },
 ];

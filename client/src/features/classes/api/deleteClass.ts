@@ -2,34 +2,21 @@ import { useMutation } from 'react-query';
 
 import { axios } from '../../../lib/axios';
 import { MutationConfig, queryClient } from '../../../lib/react-query';
-
-
-import { useNotificationStore } from '../../../stores/notifications';
-
+import toast from 'react-hot-toast';
 
 export const deleteClass = ({ classId }: { classId: string }) => {
     return axios.delete(`/class/${classId}`);
 };
 
-type UseDeleteClassOptions = {
+type IDeleteClassOptions = {
     config?: MutationConfig<typeof deleteClass>;
 };
 
-export const useDeleteClass = ({ config }: UseDeleteClassOptions = {}) => {
-    const { addNotification } = useNotificationStore();
-
+export const useDeleteClass = ({ config }: IDeleteClassOptions = {}) => {
     return useMutation({
-        onError: (_, __, context: any) => {
-            if (context?.previousClasses) {
-                queryClient.setQueryData('class', context.previousClasses);
-            }
-        },
-        onSuccess: async () => {
+        onSuccess: async (res: any) => {
             await queryClient.invalidateQueries('class');
-            addNotification({
-                type: 'success',
-                title: 'Class Deleted',
-            });
+            toast.success(res.message);
         },
         ...config,
         mutationFn: deleteClass,

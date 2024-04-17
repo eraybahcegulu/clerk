@@ -14,26 +14,27 @@ export const DeleteClass = ({ id }: DeleteClassProps) => {
 
     return (
 
-            <ConfirmationDialog
-                icon="danger"
-                title="Delete Class"
-                body="Are you sure you want to delete this Class?"
-                triggerButton={
-                    <Button variant="danger" startIcon={<TrashIcon className="h-4 w-4" />}>
-                        Delete Class
-                    </Button>
-                }
-                confirmButton={
-                    <Button
-                        isLoading={deleteClassMutation.isLoading}
-                        type="button"
-                        className="bg-red-600"
-                        onClick={async () => await deleteClassMutation.mutateAsync({ classId: id })}
-                    >
-                        Delete Class
-                    </Button>
-                }
-            />
+        <ConfirmationDialog
+            icon="danger"
+            title="Delete Class"
+            body="Are you sure you want to delete this Class?"
+            triggerButton={
+                <Button variant="danger" startIcon={<TrashIcon className="h-4 w-4" />}>
+                    Delete Class
+                </Button>
+            }
+            confirmButton={
+                <Button
+                    disabled={deleteClassMutation.isLoading}
+                    isLoading={deleteClassMutation.isLoading}
+                    type="button"
+                    className="bg-red-600"
+                    onClick={async () => await deleteClassMutation.mutateAsync({ classId: id })}
+                >
+                    Delete Class
+                </Button>
+            }
+        />
 
     );
 };

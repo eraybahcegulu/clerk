@@ -5,6 +5,7 @@ import { Button } from '../Button';
 import { Dialog, DialogTitle } from '../Dialog';
 import { useDisclosure } from '../../../hooks/useDisclosure';
 
+
 export type ConfirmationDialogProps = {
     triggerButton: React.ReactElement;
     confirmButton: React.ReactElement;

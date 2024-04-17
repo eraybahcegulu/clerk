@@ -5,7 +5,7 @@ const NotFoundPage = () => {
     const user = useUser();
     const navigate = useNavigate();
     return (
-        <div className="min-h-screen p-20 flex justify-center items-center ">
+        <div className='h-full flex justify-center items-center'>
             {
                 user?.isSignedIn
                     ?
