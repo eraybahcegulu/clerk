@@ -1,6 +1,7 @@
 import { HiOutlineHome } from "react-icons/hi2";
 import { GiTeacher } from "react-icons/gi";
 import { PiStudent } from "react-icons/pi";
+import { GrSchedules } from "react-icons/gr";
 
 export const NavItems = [
     {
@@ -17,5 +18,10 @@ export const NavItems = [
         title: "Students",
         icon: <PiStudent />,
         href: "/students",
+    },
+    {
+        title: "Schedule",
+        icon: <GrSchedules />,
+        href: "/schedule",
     },
 ];

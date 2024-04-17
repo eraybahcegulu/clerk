@@ -1,9 +1,4 @@
-export type IGetClasses = {
-    _id: string;
-    className: string;
-}
-
-export type IGetClass = {
+export type IClass = {
     _id: string;
     className: string;
 }

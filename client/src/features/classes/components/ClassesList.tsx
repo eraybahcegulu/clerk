@@ -1,28 +1,74 @@
-import { useNavigate } from 'react-router-dom';
-import { useClasses } from '../api/getClasses';
-import { IGetClasses } from '../types';
-import { DeleteClass } from './DeleteClass';
-import ContentLoading from '../../../components/ContentLoading';
 
-const ClassesList = () => {
-    const navigate = useNavigate()
+import { IClass } from '../types';
+import ContentLoading from '../../../components/ContentLoading';
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { useClasses } from '../api/getClasses';
+import { useNavigate } from 'react-router-dom';
+import { IoEyeOutline } from "react-icons/io5";
+
+
+export function ClassesList() {
+    const navigate = useNavigate();
     const { data: classes, isLoading } = useClasses();
-    if (!classes || isLoading) return <ContentLoading/>
+
+    const columnHelper = createColumnHelper<IClass>()
+
+    const columns = [
+        columnHelper.accessor('_id', {
+            header: () => <span>id</span>,
+            cell: info => info.getValue(),
+        }),
+        columnHelper.accessor('className', {
+            header: () => <span>Class Name</span>,
+            cell: info => info.getValue(),
+        }),
+        columnHelper.display({
+            header: 'Actions',
+            cell: info => (
+                <span onClick={() => navigate(`/class/${info.row.original._id}`)} className='text-2xl text-red-500 cursor-pointer'>  <IoEyeOutline />  </span>
+            ),
+        }),
+    ]
+
+    const table = useReactTable({
+        data: classes || [],
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+    });
+
+    if (!classes || isLoading) return <ContentLoading />
 
     return (
-        <div className='h-full w-full flex flex-col md:flex-row overflow-auto  gap-2 text-white'>
-            {
-                classes.map((item: IGetClasses) => (
-                    <div key={item._id} className='h-fit bg-slate-600 break-words flex items-center flex-col p-4 rounded-xl gap-2' >
-                        <span className='bg-white text-black p-2 rounded-lg hover:bg-slate-200 cursor-pointer' onClick={() => navigate(`/class/${item._id}`)}>
-                            {item.className}
-                        </span>
-                        <DeleteClass id={item._id} />
-                    </div>
-                ))
-            }
+        <div>
+            <table>
+                <thead>
+                    {table.getHeaderGroups().map(headerGroup => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map(header => (
+                                <th key={header.id}>
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody>
+                    {table.getRowModel().rows.map(row => (
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map(cell => (
+                                <td key={cell.id}>
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
-
-export default ClassesList

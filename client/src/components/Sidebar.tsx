@@ -20,9 +20,9 @@ const Sidebar = () => {
             </div>
 
             <div className='flex flex-col gap-4 p-4'>
-                {NavItems.map((item, index) => (
+                {NavItems.map((item) => (
                     <div
-                        key={index}
+                        key={item.href}
                         onClick={() => navigate(item.href)}
                         className={`flex flex-row gap-3 items-center p-2.5 w-full transition-all cursor-pointer rounded-xl ${location.pathname === item.href ? 'bg-slate-400' : 'bg-white hover:bg-slate-100'
                             }`}

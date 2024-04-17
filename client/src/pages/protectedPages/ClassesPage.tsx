@@ -1,4 +1,5 @@
-import ClassesList from "../../features/classes/components/ClassesList"
+import { ClassesList } from "../../features/classes/components/ClassesList"
+
 
 
 const ClassesPage = () => {

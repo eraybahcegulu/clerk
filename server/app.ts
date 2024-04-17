@@ -13,7 +13,7 @@ const routes = [
 ];
 
 const delayMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    setTimeout(next, 2000); // 2 saniyelik gecikme
+    setTimeout(next, 1000); // 2 saniyelik gecikme
 };
 
 app.use(delayMiddleware);

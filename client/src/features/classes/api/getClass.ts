@@ -3,9 +3,9 @@ import { useQuery } from 'react-query';
 import { axios } from '../../../lib/axios';
 import { ExtractFnReturnType, QueryConfig } from '../../../lib/react-query';
 
-import { IGetClass } from '../types';
+import { IClass } from '../types';
 
-export const getClass = ({ classId }: { classId: string }): Promise<IGetClass> => {
+export const getClass = ({ classId }: { classId: string }): Promise<IClass> => {
     return axios.get(`/class/${classId}`);
 };
 

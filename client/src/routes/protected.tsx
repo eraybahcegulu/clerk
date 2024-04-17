@@ -1,6 +1,7 @@
 import ClassPage from "../pages/protectedPages/ClassPage";
 import ClassesPage from "../pages/protectedPages/ClassesPage";
 import HomePage from "../pages/protectedPages/HomePage";
+import SchedulePage from "../pages/protectedPages/SchedulePage";
 import StudentPage from "../pages/protectedPages/StudentPage";
 import StudentsPage from "../pages/protectedPages/StudentsPage";
 
@@ -24,5 +25,9 @@ export const protectedRoutes = [
     {
         path: '/student/:studentId',
         element: <StudentPage />,
+    },
+    {
+        path: '/schedule',
+        element: <SchedulePage />,
     },
 ];

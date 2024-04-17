@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 body {
   margin: 0;
-  font-family: 'Electrolize', sans-serif;
+  font-family: "Sora", sans-serif;
 }
 
 ::-webkit-scrollbar {
