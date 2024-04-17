@@ -24,11 +24,19 @@ const Sidebar = () => {
                     <div
                         key={item.href} // not use map index for optimization, use unique data
                         onClick={() => navigate(item.href)}
-                        className={`flex flex-row gap-3 items-center p-2 w-full transition-all cursor-pointer rounded-xl ${location.pathname === item.href ? 'bg-slate-400' : 'bg-white hover:bg-slate-100'
+                        className={`flex group flex-row gap-3 items-center p-2 w-full transition-all cursor-pointer rounded-xl ${location.pathname === item.href ? 'bg-slate-400' : 'bg-white hover:bg-slate-100'
                             }`}
                     >
                         <span className='md:text-2xl'> {item.icon} </span>
                         <span className={`md:text-lg overflow-hidden transition-all ${isOpen ? 'w-full' : 'w-0'}`}> {item.title} </span>
+
+                        <div className={`absolute pl-[40px] hidden ${!isOpen && 'group-hover:flex'} `}>
+                            <div className='bg-slate-400 text-white relative flex items-center p-2 rounded-[3px]'>
+                                <div className='text-xs leading-none font-semibold capitalize'>
+                                    {item.title}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
