@@ -22,12 +22,12 @@ const Sidebar = () => {
             <div className='flex flex-col gap-4 p-4'>
                 {NavItems.map((item) => (
                     <div
-                        key={item.href}
+                        key={item.href} // not use map index for optimization, use unique data
                         onClick={() => navigate(item.href)}
-                        className={`flex flex-row gap-3 items-center p-2.5 w-full transition-all cursor-pointer rounded-xl ${location.pathname === item.href ? 'bg-slate-400' : 'bg-white hover:bg-slate-100'
+                        className={`flex flex-row gap-3 items-center p-2 w-full transition-all cursor-pointer rounded-xl ${location.pathname === item.href ? 'bg-slate-400' : 'bg-white hover:bg-slate-100'
                             }`}
                     >
-                        <span className=' md:text-2xl'> {item.icon} </span>
+                        <span className='md:text-2xl'> {item.icon} </span>
                         <span className={`md:text-lg overflow-hidden transition-all ${isOpen ? 'w-full' : 'w-0'}`}> {item.title} </span>
                     </div>
                 ))}
