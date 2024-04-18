@@ -1,6 +1,5 @@
-
-import LoginPage from "../pages/publicPages/LoginPage";
-import RegisterPage from "../pages/publicPages/RegisterPage";
+import LoginPage from "@/pages/publicPages/LoginPage";
+import RegisterPage from "@/pages/publicPages/RegisterPage";
 
 export const publicRoutes = [
     {
