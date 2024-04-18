@@ -5,6 +5,8 @@ import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "
 import { useClasses } from '../api/getClasses';
 import { useNavigate } from 'react-router-dom';
 import { IoEyeOutline } from "react-icons/io5";
+import { DeleteClass } from './DeleteClass';
+import { CreateClass } from './CreateClass';
 
 
 export function ClassesList() {
@@ -14,18 +16,17 @@ export function ClassesList() {
     const columnHelper = createColumnHelper<IClass>()
 
     const columns = [
-        columnHelper.accessor('_id', {
-            header: () => <span>id</span>,
-            cell: info => info.getValue(),
-        }),
         columnHelper.accessor('className', {
-            header: () => <span>Class Name</span>,
+            header: () => <span>Class</span>,
             cell: info => info.getValue(),
         }),
         columnHelper.display({
             header: 'Actions',
             cell: info => (
-                <span onClick={() => navigate(`/class/${info.row.original._id}`)} className='text-2xl text-red-500 cursor-pointer'>  <IoEyeOutline />  </span>
+                <div className='flex flex-row gap-2 items-center'>
+                    <span onClick={() => navigate(`/class/${info.row.original._id}`)} className='text-2xl text-blue-500 cursor-pointer'><IoEyeOutline /></span>
+                    <DeleteClass id={`${info.row.original._id}`} />
+                </div>
             ),
         }),
     ]
@@ -40,6 +41,7 @@ export function ClassesList() {
 
     return (
         <div>
+            <CreateClass/>
             <table>
                 <thead>
                     {table.getHeaderGroups().map(headerGroup => (
