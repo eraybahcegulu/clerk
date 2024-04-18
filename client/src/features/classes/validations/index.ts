@@ -1,5 +1,8 @@
-import * as z from 'zod';
+import * as Yup from "yup";
 
-export const createClassValidation = z.object({
-    className: z.string().min(1, 'Required'),
+export const createClassValidator = Yup.object({
+    className: Yup.string()
+        .trim()
+        .required("Class Name required to create class")
+        .max(50, "Class Name must be at most 50 characters"),
 });

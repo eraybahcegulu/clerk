@@ -1,35 +1,17 @@
-
-import { ConfirmationDialog } from '../../../components/Elements/ConfirmationDialog';
-
-import { useDeleteClass } from '../api/deleteClass';
 import CustomButton from '../../../components/CustomButton';
+import { useDeleteClass } from '../api/mutations';
+import { IDeleteClass } from '../types';
 
-type DeleteClassProps = {
-    id: string;
-};
-
-export const DeleteClass = ({ id }: DeleteClassProps) => {
+export const DeleteClass = ({ classId }: IDeleteClass) => {
     const deleteClassMutation = useDeleteClass();
 
     return (
-
-        <ConfirmationDialog
-            icon="danger"
-            title="Delete Class"
-            body="Are you sure you want to delete this Class?"
-            triggerButton={
-                <CustomButton children='Delete' color='danger' variants='faded' />
-            }
-            confirmButton={
-                <CustomButton
-                    children='Delete'
-                    color='danger'
-                    variants='shadow'
-                    isLoading={deleteClassMutation.isLoading}
-                    onClick={async () => await deleteClassMutation.mutateAsync({ classId: id })}
-                />
-            }
+        <CustomButton
+            children='Delete'
+            color='danger'
+            variants='shadow'
+            isLoading={deleteClassMutation.isLoading}
+            onClick={async () => await deleteClassMutation.mutateAsync({ classId: classId })}
         />
-
     );
 };

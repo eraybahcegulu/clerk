@@ -3,6 +3,10 @@ export type IClass = {
     className: string;
 }
 
+export type IDeleteClass = {
+    classId: string;
+}
+
 export type ISuccessCreate = {
     message: string;
 }

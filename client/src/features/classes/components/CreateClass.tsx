@@ -1,53 +1,44 @@
+import CustomButton from "../../../components/CustomButton";
 
+import { Formik, Field, Form, ErrorMessage, } from "formik";
+import { Input } from '@nextui-org/react';
+import { createClassValidator } from "../validations";
+import { useCreateClass } from "../api/mutations";
 
-import { Button } from '../../../components/Elements/Button';
-import { Form, FormDrawer, InputField } from '../../../components/Form';
-
-import { useCreateClass } from '../api/createClass';
-import { ICreateClass } from '../types';
-import CustomButton from '../../../components/CustomButton';
-import { createClassValidation } from '../validations';
 
 export const CreateClass = () => {
     const createClassMutation = useCreateClass();
 
     return (
-        <FormDrawer
-            isDone={createClassMutation.isSuccess}
-            triggerButton={
-                <CustomButton children='Create Class' color='primary' variants='shadow' />
-            }
-            title="Create Class"
-            submitButton={
-                <Button
-                    form="create-class"
-                    type="submit"
-                    size="sm"
-                    disabled={createClassMutation.isLoading}
-                    isLoading={createClassMutation.isLoading}
-                >
-                    Create
-                </Button>
-            }
+
+        <Formik
+            initialValues={{ className: "" }}
+            validationSchema={createClassValidator}
+            onSubmit={async (values) => {
+                await createClassMutation.mutateAsync({
+                    data: {
+                        className: values.className,
+                    }
+                });
+            }}
         >
-            <Form<ICreateClass['data'], typeof createClassValidation>
-                id="create-class"
-                onSubmit={async (values) => {
-                    await createClassMutation.mutateAsync({ data: values });
-                }}
-                validation={createClassValidation}
-            >
-                {({ register, formState }) => (
-                    <>
-                        <InputField
-                            variant='bordered'
-                            label="Class Name"
-                            error={formState.errors['className']}
-                            registration={register('className')}
-                        />
-                    </>
-                )}
+            <Form>
+                <div className="flex flex-col gap-4 w-[300px]">
+                    <div className="flex flex-col gap-2">
+                        <div>
+                            <Field name="className" as={Input} maxLength={20} variant='bordered' label="className" />
+                            <ErrorMessage name="className" component="div" className="text-red-500 text-xs" />
+                        </div>
+                    </div>
+                    <CustomButton
+                        type="submit"
+                        size="sm"
+                        isLoading={createClassMutation.isLoading}
+                    >
+                        Create
+                    </CustomButton>
+                </div>
             </Form>
-        </FormDrawer>
+        </Formik>
     );
 };
