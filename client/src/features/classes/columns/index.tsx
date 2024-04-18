@@ -1,6 +1,6 @@
 import { TableColumnsType } from "antd";
-import { IClass } from "../../types/index";
-import { DeleteClass } from "../DeleteClass";
+import { IClass } from "../types/index";
+import { DeleteClass } from "../components/DeleteClass";
 
 export const classTableColumns: TableColumnsType<IClass> = [
     {

@@ -1,4 +1,5 @@
-import { MutationConfig } from "../../../../lib/react-query";
+
+import { MutationConfig } from "@/lib/react-query";
 import { createClassService, deleteClassService } from "../services";
 
 

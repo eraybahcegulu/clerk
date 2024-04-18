@@ -1,14 +1,14 @@
 
-import ContentLoading from '../../../components/ContentLoading';
+
 import { CreateClass } from './CreateClass';
 import { Table } from 'antd';
-import { classTableColumns } from './columns';
-import { useClasses } from '../api/queries';
+import ContentLoading from '@/components/ContentLoading';
+import { useGetClasses } from '../api/queries';
+import { classTableColumns } from '../columns';
 
 export function ClassesList() {
 
-    const { data: classes, isLoading } = useClasses();
-
+    const { data: classes, isLoading } = useGetClasses();
 
     if (!classes || isLoading) return <ContentLoading />
 

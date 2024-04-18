@@ -1,5 +1,7 @@
-import { axios } from "../../../../lib/axios";
-import { IClass, ICreateClass } from "../../types";
+
+import { axios } from "@/lib/axios";
+import { IClass, ICreateClass } from "@/features/classes/types";
+
 
 export const getClassesService = () => {
     return axios.get(`/class`);

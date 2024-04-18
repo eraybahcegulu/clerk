@@ -1,9 +1,9 @@
 
-import { useClasses } from "../features/classes/api/queries";
+import { useGetClasses } from "../features/classes/api/queries";
 import ContentLoading from "./ContentLoading";
 
 const Panels = () => {
-    const { data: classes, isLoading } = useClasses();
+    const { data: classes, isLoading } = useGetClasses();
     if (!classes || isLoading) return <ContentLoading />
     return (
         <div className='h-full w-full flex flex-col md:flex-row gap-5'>

@@ -1,4 +1,5 @@
-import { QueryConfig } from "../../../../lib/react-query";
+
+import { QueryConfig } from "@/lib/react-query";
 import { getClassService, getClassesService } from "../services";
 
 

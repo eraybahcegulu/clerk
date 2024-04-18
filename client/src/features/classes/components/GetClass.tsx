@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
-import ContentLoading from '../../../components/ContentLoading';
-import { useClass } from '../api/queries';
+
+import { useGetClass } from '../api/queries';
+import ContentLoading from '@/components/ContentLoading';
 
 const GetClass = () => {
     const { classId } = useParams();
-    const { data, isLoading } = useClass({ classId: classId || '' });
+    const { data, isLoading } = useGetClass({ classId: classId || '' });
     if (!data || isLoading) return <ContentLoading />
 
     return (

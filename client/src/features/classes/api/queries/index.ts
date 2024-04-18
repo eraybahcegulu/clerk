@@ -1,10 +1,11 @@
 import { useQuery } from "react-query";
-import { ExtractFnReturnType } from "../../../../lib/react-query";
+
 
 import { getClassService, getClassesService } from "../services";
 import { GetClassQuery, GetClassesQuery, IGetClassQueryOptions, IGetClassesQueryOptions } from "../options/queryOptions";
+import { ExtractFnReturnType } from "@/lib/react-query";
 
-export const useClass = ({ classId, config }: IGetClassQueryOptions) => {
+export const useGetClass = ({ classId, config }: IGetClassQueryOptions) => {
     return useQuery<ExtractFnReturnType<GetClassQuery>>({
         ...config,
         queryKey: ['class', classId],
@@ -12,7 +13,7 @@ export const useClass = ({ classId, config }: IGetClassQueryOptions) => {
     });
 };
 
-export const useClasses = ({ config }: IGetClassesQueryOptions = {}) => {
+export const useGetClasses = ({ config }: IGetClassesQueryOptions = {}) => {
     return useQuery<ExtractFnReturnType<GetClassesQuery>>({
         ...config,
         queryKey: ['classes'],

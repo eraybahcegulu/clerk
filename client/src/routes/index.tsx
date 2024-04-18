@@ -1,11 +1,11 @@
-import { useRoutes } from 'react-router-dom';
-import { publicRoutes } from './public';
-import { protectedRoutes } from './protected';
-import { useUser } from '@clerk/clerk-react';
-import { commonRoutes } from './common';
-import UserLoading from '../components/UserLoading';
-import PrivateLayout from '../components/PrivateLayout';
-import PublicLayout from '../components/PublicLayout';
+import { useUser } from "@clerk/clerk-react";
+import { commonRoutes } from "./common";
+import { publicRoutes } from "./public";
+import { useRoutes } from "react-router-dom";
+import PublicLayout from "@/components/PublicLayout";
+import UserLoading from "@/components/UserLoading";
+import PrivateLayout from "@/components/PrivateLayout";
+import { protectedRoutes } from "./protected";
 
 export const AppRoutes = () => {
     const { isSignedIn, isLoaded } = useUser();
