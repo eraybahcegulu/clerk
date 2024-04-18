@@ -9,6 +9,6 @@ router.use("/api/class", subRouter);
 subRouter.get("/", auth,  getAllClass);
 subRouter.get("/:classId", auth,  getClass);
 subRouter.post("/", auth, createClass);
-subRouter.delete("/:classId", deleteClass);
+subRouter.delete("/:classId", auth, deleteClass);
 
 export default router;

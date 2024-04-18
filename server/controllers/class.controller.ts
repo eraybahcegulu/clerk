@@ -4,6 +4,7 @@ import { status } from "../models/enums/status.model";
 
 export const getAllClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        await new Promise(resolve => setTimeout(resolve, 5000));
         const classes = await Class.find({ status: status.ACTIVE, createdBy: req.user.sub })
         return res.status(200).json(classes);
     } catch (error: any) {
@@ -45,7 +46,7 @@ export const createClass = async (req: Request, res: Response, next: NextFunctio
 
 export const deleteClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
-
+        
         const existClass = await Class.findOne({ _id: req.params.classId })
         if (!existClass) {
             return res.status(400).json({ message: `Not found` });

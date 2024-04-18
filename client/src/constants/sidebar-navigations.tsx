@@ -3,7 +3,7 @@ import { GiTeacher } from "react-icons/gi";
 import { PiStudent } from "react-icons/pi";
 import { GrSchedules } from "react-icons/gr";
 
-export const NavItems = [
+export const navItems = [
     {
         title: "Home",
         icon: <LuHome />,

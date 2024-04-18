@@ -2,7 +2,7 @@ import { UserButton } from "@clerk/clerk-react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { FaAngleLeft } from "react-icons/fa";
 import { useSidebarStore } from "../zustand/SidebarStore"
-import { NavItems } from "../constants/sidebar-navigations";
+import { navItems } from "../constants/sidebar-navigations";
 
 const Sidebar = () => {
     const navigate = useNavigate()
@@ -20,7 +20,7 @@ const Sidebar = () => {
             </div>
 
             <div className='flex flex-col gap-4 p-4'>
-                {NavItems.map((item) => (
+                {navItems.map((item) => (
                     <div
                         key={item.href} // not use map index for optimization, use unique data
                         onClick={() => navigate(item.href)}

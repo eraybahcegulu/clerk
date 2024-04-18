@@ -1,8 +1,6 @@
-
-
 import { Button } from '@nextui-org/react';
 import clsx from 'clsx';
-import { Spinner } from './Elements/Spinner';
+
 
 interface ICustomButtonProps {
     onClick?: (event: React.MouseEvent<HTMLElement>) => void;
@@ -46,7 +44,7 @@ const CustomButton: React.FC<ICustomButtonProps> = ({
         >
             {
                 isLoading ?
-                    <Spinner />
+                    <span>Loading...</span>
                     : children
             }
         </Button>

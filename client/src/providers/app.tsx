@@ -1,10 +1,9 @@
 import React from 'react'
 import { NextUIProvider } from '@nextui-org/react'
-import { QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { queryClient } from '../lib/react-query';
 
 type AppProviderProps = {
     children: React.ReactNode;
@@ -18,14 +17,16 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         throw new Error("Missing Publishable Key")
     }
 
+    const queryClient = new QueryClient()
+
     return (
-        <NextUIProvider>
+        <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
             <QueryClientProvider client={queryClient}>
-                <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
+                <NextUIProvider>
                     <Toaster />
                     <Router>{children}</Router>
-                </ClerkProvider>
+                </NextUIProvider>
             </QueryClientProvider>
-        </NextUIProvider>
+        </ClerkProvider>
     )
 }
