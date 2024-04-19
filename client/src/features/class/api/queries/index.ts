@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 
-
 import { getClassService, getClassesService } from "../services";
 import { GetClassQuery, GetClassesQuery, IGetClassQueryOptions, IGetClassesQueryOptions } from "../options/queryOptions";
 import { ExtractFnReturnType } from "@/lib/react-query";

@@ -30,9 +30,9 @@ const CustomForm: React.FC<Props> = ({ initialValues, validationSchema, mutation
                 resetForm();
             }}
         >
-            <Form>
-                <div className="flex flex-col gap-4 w-[300px]">
-                    <div className="flex flex-col gap-2">
+            <div className=" gap-4 w-full max-w-[300px] bg-white p-4 rounded-lg">
+                <Form>
+                    <div className="flex flex-col h-[75px] gap-2">
                         {fields.map((field) => (
                             <div key={field.name}>
                                 <Field name={field.name} as={Input} maxLength={field.maxLength} variant={field.variant} label={field.label} type={field.type} />
@@ -42,14 +42,14 @@ const CustomForm: React.FC<Props> = ({ initialValues, validationSchema, mutation
                     </div>
                     <CustomButton
                         type="submit"
-                        size="sm"
+                        size="md"
                         color='primary'
                         isLoading={mutation.isLoading}
                     >
                         Create
                     </CustomButton>
-                </div>
-            </Form>
+                </Form>
+            </div>
         </Formik>
     );
 }

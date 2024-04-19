@@ -3,6 +3,13 @@ export type IClass = {
     className: string;
 }
 
+export type IGetClass = {
+    data: {
+        _id: string;
+        className: string;
+    }
+}
+
 export type IDeleteClass = {
     classId: string;
 }

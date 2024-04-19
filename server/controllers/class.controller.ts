@@ -37,7 +37,7 @@ export const createClass = async (req: Request, res: Response, next: NextFunctio
         });
 
         await newClass.save();
-        return res.status(200).json({ message: "created" });
+        return res.status(200).json({ message: "Class created" });
     } catch (error: any) {
         console.error('Error', error);
         return res.status(500).json(error.message);
@@ -53,7 +53,7 @@ export const deleteClass = async (req: Request, res: Response, next: NextFunctio
 
         await existClass.deleteOne();
 
-        return res.status(200).json({ message: "deleted" });
+        return res.status(200).json({ message: "Class deleted" });
 
     } catch (error: any) {
         console.error('Error', error);

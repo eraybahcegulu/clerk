@@ -1,5 +1,6 @@
 import { Button } from '@nextui-org/react';
 import clsx from 'clsx';
+import LoadingSpinner from './LoadingSpinner';
 
 
 interface ICustomButtonProps {
@@ -44,7 +45,7 @@ const CustomButton: React.FC<ICustomButtonProps> = ({
         >
             {
                 isLoading ?
-                    <span>Loading...</span>
+                    <LoadingSpinner />
                     : children
             }
         </Button>

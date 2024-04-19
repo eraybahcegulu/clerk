@@ -1,8 +1,13 @@
-import { ClassesList } from "../../features/classes/components/ClassesList"
+import { ClassesList } from "@/features/class/components/ClassesList"
+import { CreateClass } from "@/features/class/components/CreateClass"
 
 const ClassesPage = () => {
+
     return (
-        <ClassesList />
+        <>
+            <CreateClass />
+            <ClassesList />
+        </>
     )
 }
 

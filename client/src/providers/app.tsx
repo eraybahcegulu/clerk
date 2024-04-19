@@ -23,7 +23,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY}>
             <QueryClientProvider client={queryClient}>
                 <NextUIProvider>
-                    <Toaster />
+                    <Toaster position='top-right' />
                     <Router>{children}</Router>
                 </NextUIProvider>
             </QueryClientProvider>

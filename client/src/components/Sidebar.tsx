@@ -30,7 +30,7 @@ const Sidebar = () => {
                         <span className='md:text-2xl'> {item.icon} </span>
                         <span className={`md:text-lg overflow-hidden transition-all ${isOpen ? 'w-full' : 'w-0'}`}> {item.title} </span>
 
-                        <div className={`absolute ml-[40px] hidden ${!isOpen && 'group-hover:flex'} `}>
+                        <div className={`absolute z-10 ml-[40px] hidden ${!isOpen && 'group-hover:flex'} `}>
                             <div className='bg-slate-400 text-white relative flex items-center p-2 rounded-[3px]'>
                                 <div className='text-xs leading-none font-semibold capitalize'>
                                     {item.title}

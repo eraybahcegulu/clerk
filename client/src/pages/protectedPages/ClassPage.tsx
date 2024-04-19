@@ -1,6 +1,7 @@
-import GetClass from "../../features/classes/components/GetClass"
+import GetClass from "@/features/class/components/GetClass"
 
 const ClassPage = () => {
+
     return (
         <GetClass />
     )
