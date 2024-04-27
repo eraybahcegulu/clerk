@@ -6,7 +6,7 @@ export type IClass = {
 export type IGetClass = {
     data: {
         _id: string;
-        className: string;
+        name: string;
     }
 }
 
@@ -14,9 +14,6 @@ export type IDeleteClass = {
     classId: string;
 }
 
-export type ISuccessCreate = {
-    message: string;
-}
 
 export type ICreateClass = {
     data: {

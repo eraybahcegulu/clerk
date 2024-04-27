@@ -4,7 +4,7 @@ import { IClassModel } from "../types";
 
 const classSchema = new Schema<IClassModel>(
     {
-        className: {
+        name: {
             type: String,
             required: true,
             trim: true,

@@ -1,8 +1,12 @@
 import { Spinner } from "@nextui-org/react";
 
-const LoadingSpinner = () => {
+interface ILoadingSpinnerProps {
+    size?: 'sm' | 'md' | 'lg';
+}
+
+const LoadingSpinner: React.FC<ILoadingSpinnerProps> = ({size}) => {
     return (
-        <Spinner color="default" size="sm" />
+        <Spinner color="default" size={size} />
     )
 }
 

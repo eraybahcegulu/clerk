@@ -1,6 +1,12 @@
+import { CreateStudent } from "@/features/student/components/CreateStudent"
+import { StudentsList } from "@/features/student/components/StudentsList"
+
 const StudentsPage = () => {
     return (
-        <div>StudentsPage</div>
+        <>
+        <CreateStudent />
+        <StudentsList />
+    </>
     )
 }
 

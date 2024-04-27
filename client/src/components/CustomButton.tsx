@@ -45,7 +45,7 @@ const CustomButton: React.FC<ICustomButtonProps> = ({
         >
             {
                 isLoading ?
-                    <LoadingSpinner />
+                    <LoadingSpinner size='sm' />
                     : children
             }
         </Button>

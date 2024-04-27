@@ -20,6 +20,7 @@ export const useDeleteClass = ({ config }: IDeleteClassMutationOptions = {}) => 
     const queryClient = useQueryClient()
     return useMutation({
         onSuccess: async (res: any) => {
+            await queryClient.resetQueries('studentClasses');
             await queryClient.invalidateQueries('classes');
             toast.success(res.data.message);
         },

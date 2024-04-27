@@ -1,8 +1,8 @@
 export const createClassFields = [
     {
-        name: "className",
+        name: "name",
         label: "Class Name",
-        maxLength: 20,
+        maxLength: 50,
         type: "text" as const,
         variant: "bordered",
     },

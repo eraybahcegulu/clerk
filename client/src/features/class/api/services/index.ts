@@ -17,4 +17,3 @@ export const createClassService = ({ data }: ICreateClass) => {
 export const deleteClassService = ({ classId }: { classId: string }) => {
     return axios.delete(`/class/${classId}`);
 };
-

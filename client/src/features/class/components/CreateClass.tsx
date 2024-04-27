@@ -11,7 +11,7 @@ export const CreateClass = () => {
         <>
 
             <CustomForm
-                initialValues={{ className: "" }}
+                initialValues={{ name: "" }}
                 mutation={createClassMutation}
                 validationSchema={createClassValidator}
                 fields={createClassFields}

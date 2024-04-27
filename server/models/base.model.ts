@@ -1,5 +1,3 @@
-import { status } from "./enums/status.model";
-
 export const BaseModel = {
 
     createdBy: {
@@ -11,11 +9,4 @@ export const BaseModel = {
         type: Date,
         default: Date.now
     },
-
-    status: {
-        required: true,
-        type: String,
-        enum: [status.ACTIVE, status.DELETED],
-        default: status.ACTIVE,
-    }
 };

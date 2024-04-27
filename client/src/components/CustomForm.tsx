@@ -6,7 +6,7 @@ import { AnySchema } from 'yup';
 interface FieldConfig {
     name: string;
     label: string;
-    maxLength: number;
+    maxLength?: number;
     type: "text" | "number" | "email" | "password";
     variant: string;
 }
@@ -30,11 +30,11 @@ const CustomForm: React.FC<Props> = ({ initialValues, validationSchema, mutation
                 resetForm();
             }}
         >
-            <div className=" gap-4 w-full max-w-[300px] bg-white p-4 rounded-lg">
+            <div className=" gap-4 w-full max-w-[400px] bg-white p-4 rounded-lg">
                 <Form>
-                    <div className="flex flex-col h-[75px] gap-2">
+                    <div className="flex flex-col gap-2 mb-2">
                         {fields.map((field) => (
-                            <div key={field.name}>
+                            <div key={field.name} className=' h-fit'>
                                 <Field name={field.name} as={Input} maxLength={field.maxLength} variant={field.variant} label={field.label} type={field.type} />
                                 <ErrorMessage name={field.name} component="div" className="text-red-500 text-xs" />
                             </div>

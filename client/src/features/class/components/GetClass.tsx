@@ -8,11 +8,11 @@ const GetClass = () => {
     const { classId } = useParams();
     const { data, isLoading } = useGetClass({ classId: classId || '' });
 
-    if(isLoading) return <LoadingSpinner/>
+    if(isLoading) return <LoadingSpinner size='lg'/>
     if (!data) return <Error />
 
     return (
-        <span> {data.data.className}</span>
+        <span> {data.data.name}</span>
     )
 }
 

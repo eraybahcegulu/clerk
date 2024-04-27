@@ -1,6 +1,10 @@
+import GetStudent from "@/features/student/components/GetStudent"
+
 const StudentPage = () => {
     return (
-        <div>StudentPage</div>
+        <>
+        <GetStudent />
+        </>
     )
 }
 
