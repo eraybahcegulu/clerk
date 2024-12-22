@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/clerk
+    depends_on:
+      - mongodb
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+#err_empty_response 3000portu verirse vite config ts dosyasına host: '0.0.0.0'" argümanı eklenmeli****************
+    ports:
+      - "3000:3000"
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+volumes:
+  mongodb_data:
