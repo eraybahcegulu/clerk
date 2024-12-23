@@ -14,9 +14,21 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    volumes:
+      - client-dist:/usr/src/app/dist
 #err_empty_response 3000portu verirse vite config ts dosyasına host: '0.0.0.0'" argümanı eklenmeli****************
     ports:
       - "3000:3000"
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    volumes:
+      - client-dist:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    depends_on:
+      - client  
   mongodb:
     image: mongo:5.0
     ports:
@@ -25,3 +37,4 @@ services:
       - mongodb_data:/data/db
 volumes:
   mongodb_data:
+  client-dist:
