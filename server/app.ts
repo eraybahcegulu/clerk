@@ -14,10 +14,4 @@ const routes = [
     studentRouter
 ];
 
-const delayMiddleware = (req: Request, res: Response, next: NextFunction) => {
-    setTimeout(next, 500);
-};
-
-app.use(delayMiddleware);
-
 routes.forEach(route => app.use(route));

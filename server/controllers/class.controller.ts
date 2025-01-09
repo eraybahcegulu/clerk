@@ -4,7 +4,7 @@ import ClassStudent from "../models/classStudent.model";
 
 export const getAllClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        await new Promise(resolve => setTimeout(resolve, 200));
+        
         const classes = await Class.find({ createdBy: req.user.sub,})
         return res.status(200).json(classes);
     } catch (error: any) {
@@ -15,7 +15,6 @@ export const getAllClass = async (req: Request, res: Response, next: NextFunctio
 
 export const getClass = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        await new Promise(resolve => setTimeout(resolve, 200));
         const exist = await Class.findOne({ createdBy: req.user.sub, _id: req.params.classId })
         return res.status(200).json(exist);
     } catch (error: any) {
