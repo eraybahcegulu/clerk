@@ -2,24 +2,27 @@ import { Request, Response, NextFunction } from "express";
 import Student from "../models/student.model";
 import Class from "../models/class.model";
 import ClassStudent from "../models/classStudent.model";
+import { handleError, sendBad, sendOK } from "../utils/response";
 
 export const getAllStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const students = await Student.find({ createdBy: req.user.sub, })
-        return res.status(200).json(students);
+        return sendOK(res, students);
     } catch (error: any) {
-        console.error('Error', error);
-        return res.status(500).json(error.message);
+        handleError(error, res);
     }
 };
 
 export const getStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const exist = await Student.findOne({ createdBy: req.user.sub, _id: req.params.studentId })
-        return res.status(200).json(exist);
+
+        if (!exist) {
+            return sendBad(res, { message: 'Student not found.' });
+        }
+        return sendOK(res, exist);
     } catch (error: any) {
-        console.error('Error', error);
-        return res.status(500).json(error.message);
+        handleError(error, res);
     }
 };
 
@@ -27,7 +30,7 @@ export const createStudent = async (req: Request, res: Response, next: NextFunct
     try {
         const exist = await Student.findOne({ createdBy: req.user.sub, no: req.body.no })
         if (exist) {
-            return res.status(400).json({ message: `No ${exist.no} already exist in your students.` });
+            return sendBad(res, { message: `No ${exist.no} already exist in your students.` });
         }
 
         const newStudent = new Student({
@@ -38,10 +41,9 @@ export const createStudent = async (req: Request, res: Response, next: NextFunct
         });
 
         await newStudent.save();
-        return res.status(200).json({ message: "Student created" });
+        return sendOK(res, { message: "Student created" });
     } catch (error: any) {
-        console.error('Error', error);
-        return res.status(500).json(error.message);
+        handleError(error, res);
     }
 };
 
@@ -49,16 +51,14 @@ export const deleteStudent = async (req: Request, res: Response, next: NextFunct
     try {
         const exist = await Student.findOne({ _id: req.params.studentId, createdBy: req.user.sub, })
         if (!exist) {
-            return res.status(400).json({ message: `Not found` });
+            return sendBad(res, { message: `Not found` });
         }
 
         await exist.deleteOne();
-
-        return res.status(200).json({ message: "Student deleted" });
+        return sendOK(res, { message: "Student deleted" });
 
     } catch (error: any) {
-        console.error('Error', error);
-        return res.status(500).json(error.message);
+        handleError(error, res);
     }
 };
 
@@ -66,17 +66,16 @@ export const getStudentClasses = async (req: Request, res: Response, next: NextF
     try {
         const exist = await Student.findOne({ _id: req.params.studentId, createdBy: req.user.sub, })
         if (!exist) {
-            return res.status(400).json({ message: `Not found` });
+            return sendBad(res, { message: `Not found` });
         }
 
         const classes = await ClassStudent.find({ createdBy: req.user.sub, student: req.params.studentId })
-                                            .populate('class');
+            .populate('class');
 
-        return res.status(200).json(classes);
+        return sendOK(res, classes);
 
     } catch (error: any) {
-        console.error('Error', error);
-        return res.status(500).json(error.message);
+        handleError(error, res);
     }
 };
 
@@ -84,17 +83,17 @@ export const addStudentToClass = async (req: Request, res: Response, next: NextF
     try {
         const existStudent = await Student.findOne({ _id: req.params.studentId, createdBy: req.user.sub, })
         if (!existStudent) {
-            return res.status(400).json({ message: `Student not found` });
+            return sendBad(res, { message: `Student not found` });
         }
 
         const existClass = await Class.findOne({ _id: req.params.classId, createdBy: req.user.sub, })
         if (!existClass) {
-            return res.status(400).json({ message: `Class not found` });
+            return sendBad(res, { message: `Class not found` });
         }
 
-        const existStudentInThisClass = await ClassStudent.findOne({ class: req.params.classId, student: req.params.studentId});
-        if(existStudentInThisClass){
-            return res.status(400).json({ message: `This student already registered to this class` });
+        const existStudentInThisClass = await ClassStudent.findOne({ class: req.params.classId, student: req.params.studentId });
+        if (existStudentInThisClass) {
+            return sendBad(res, { message: `This student already registered to this class` });
         }
 
         const newClassStudent = new ClassStudent({
@@ -104,10 +103,9 @@ export const addStudentToClass = async (req: Request, res: Response, next: NextF
         });
 
         await newClassStudent.save();
-        return res.status(200).json({ message: "Student added to class" });
+        return sendOK(res, { message: "Student added to class" });
 
     } catch (error: any) {
-        console.error('Error', error);
-        return res.status(500).json(error.message);
+        handleError(error, res);
     }
 };
