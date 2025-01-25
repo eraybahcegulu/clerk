@@ -25,6 +25,7 @@ const logger = winston.createLogger({
 export const logOK = (req: Request, message: string | object) => {
     logger.info('----------------------------------------------------------------------------------------------------------------------------------------------------------------');
     logger.info(`OK Response}`);
+    logger.info('Timestamp:' + new Date().toUTCString());
     logger.info(`Method: ${req.method}`);
     logger.info(`Base URL: ${req.baseUrl}`);
     logger.info(`Body: ${JSON.stringify(req.body)}`);
@@ -37,6 +38,7 @@ export const logOK = (req: Request, message: string | object) => {
 export const logBad = (req: Request, message: string | object) => {
     logger.error('----------------------------------------------------------------------------------------------------------------------------------------------------------------');
     logger.error(`Bad Response}`);
+    logger.error('Timestamp:' + new Date().toUTCString());
     logger.error(`Method: ${req.method}`);
     logger.error(`Base URL: ${req.baseUrl}`);
     logger.error(`Body: ${JSON.stringify(req.body)}`);
@@ -49,6 +51,7 @@ export const logBad = (req: Request, message: string | object) => {
 export const logServerError = (error: any, req: Request) => {
     logger.error('----------------------------------------------------------------------------------------------------------------------------------------------------------------');
     logger.error(`Error occurred at ${req.method} ${req.url}`);
+    logger.error('Timestamp:' + new Date().toUTCString());
     logger.error(`Error message: ${error.message}`);
     logger.error(`Stack trace: ${error.stack}`);
 };
