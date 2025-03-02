@@ -21,7 +21,7 @@ services:
       - client-dist:/usr/src/app/dist
 #err_empty_response 3000portu verirse vite config ts dosyasına host: '0.0.0.0'" argümanı eklenmeli****************
     ports:
-      - "3000:3000"
+      - "3002:3002"
     networks:
       - app-network
   nginx:
@@ -87,11 +87,64 @@ services:
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
     networks:
       - app-network
-      
+  prometheus:
+      image: prom/prometheus:latest
+      container_name: prometheus
+      restart: always
+      ports:
+        - "9090:9090"
+      volumes:
+        - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      command:
+        - "--config.file=/etc/prometheus/prometheus.yml"
+  grafana:
+      image: grafana/grafana:latest
+      container_name: grafana
+      restart: always
+      ports:
+        - "3000:3000"
+      volumes:
+        - grafana-data:/var/lib/grafana
+      environment:
+        - GF_SECURITY_ADMIN_USER=admin
+        - GF_SECURITY_ADMIN_PASSWORD=admin
+        - GF_USERS_ALLOW_SIGN_UP=false
+      depends_on:
+        - prometheus 
+  node_exporter:
+        image: prom/node-exporter
+        container_name: node_exporter
+        ports:
+          - "9100:9100"
+
+  cadvisor:
+        image: gcr.io/cadvisor/cadvisor
+        container_name: cadvisor
+        ports:
+          - "8080:8080"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /sys:/sys
+          - /var/lib/docker:/var/lib/docker:ro
+
+  nagios:
+        image: jasonrivers/nagios
+        container_name: nagios
+        ports:
+          - "8081:80"
+        volumes:
+          - ./nagios/etc:/opt/nagios/etc
+          - ./nagios/var:/opt/nagios/var
+          - ./nagios/libexec:/opt/nagios/libexec
+        restart: unless-stopped
+        networks:
+          - app-network
 volumes:
   mongodb_data:
   client-dist:
-
+  prometheus-data:
+  grafana-data:
 networks:
   app-network:
     driver: bridge
+
