@@ -1,4 +1,4 @@
-export const BaseModel = {
+export const baseModel = {
 
     createdBy: {
         type: String,

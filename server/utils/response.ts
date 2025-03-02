@@ -20,5 +20,5 @@ export const handleError = (error: any, res: Response) => {
     //console.log(res)
     console.log(error)
     logServerError(error, res.req);
-    return res.status(500).json({ message: error.message || 'An unexpected error occurred.' });
+    return res.status(500).json('An unexpected error occurred.' );
 };

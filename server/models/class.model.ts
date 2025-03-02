@@ -1,5 +1,5 @@
 import mongoose, { Model, Schema } from "mongoose";
-import { BaseModel } from "./base.model"
+import { baseModel } from "./base.model"
 import { IClassModel } from "../types";
 
 const classSchema = new Schema<IClassModel>(
@@ -9,7 +9,7 @@ const classSchema = new Schema<IClassModel>(
             required: true,
             trim: true,
         },
-        ...BaseModel
+        ...baseModel
     },
     {
         versionKey: false,
