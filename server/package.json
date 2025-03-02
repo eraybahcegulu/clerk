@@ -21,6 +21,7 @@
     "gelf-pro": "^1.4.0",
     "jsdom": "^26.0.0",
     "jsonwebtoken": "^9.0.2",
+    "kafkajs": "^2.2.4",
     "mongoose": "^8.2.3",
     "ts-node-dev": "^2.0.0",
     "uuid": "^9.0.1",

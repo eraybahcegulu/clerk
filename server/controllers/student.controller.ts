@@ -3,6 +3,7 @@ import Student from "../models/student.model";
 import Class from "../models/class.model";
 import ClassStudent from "../models/classStudent.model";
 import { handleError, sendBad, sendOK } from "../utils/response";
+import { createKafkaMessage, KAFKA_OPERATIONS, KAFKA_TOPICS, producer, sendToKafka } from "../utils/kafka";
 
 export const getAllStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -28,20 +29,21 @@ export const getStudent = async (req: Request, res: Response, next: NextFunction
 
 export const createStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const exist = await Student.findOne({ createdBy: req.user.sub, no: req.body.no })
-        if (exist) {
-            return sendBad(res, { message: `No ${exist.no} already exist in your students.` });
+        const { name, surname, no } = req.body;
+        const createdBy = req.user.sub;
+
+        const existingStudent = await Student.findOne({ createdBy, no });
+
+        if (existingStudent) {
+            return sendBad(res, { message: `No ${existingStudent.no} already exists in your students.` });
         }
 
-        const newStudent = new Student({
-            createdBy: req.user.sub,
-            name: req.body.name,
-            surname: req.body.surname,
-            no: req.body.no
-        });
+        const message = await createKafkaMessage(KAFKA_TOPICS.STUDENT_OPERATIONS, KAFKA_OPERATIONS.CREATE, { createdBy, name, surname, no }, );
 
-        await newStudent.save();
+        await sendToKafka(message);
+
         return sendOK(res, { message: "Student created" });
+
     } catch (error: any) {
         handleError(error, res);
     }
