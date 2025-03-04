@@ -20,3 +20,9 @@ declare global {
         }
     }
 }
+
+declare module "express-serve-static-core" {
+    interface Request {
+        signal?: AbortSignal;
+    }
+}
